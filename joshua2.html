@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexander McQueen - Stock</title>
+    <style>
+        /* Reset básico y fondo general Azabache */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #050505;
+            color: #e0e0e0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Encabezado: Negro Ónix con línea sutil */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0d0d0d;
+            border-bottom: 1px solid #222222;
+            padding: 20px 40px;
+        }
+
+        .header-titulo {
+            font-size: 26px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .logo-cabecera {
+            max-width: 140px;
+            height: auto;
+            display: block;
+            filter: invert(1); /* Invierte imágenes oscuras a blanco */
+        }
+
+        .barra-navgacion {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Botones: Negro Mate + Oro Champagne */
+        .boton-nav {
+            text-decoration: none;
+            color: #c5a059; /* Oro Champagne */
+            background-color: #141414; /* Negro Mate */
+            padding: 9px 20px;
+            border-radius: 2px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .boton-nav:hover {
+            background-color: #c5a059;
+            color: #050505;
+            border-color: #c5a059;
+            box-shadow: 0 0 12px rgba(197, 160, 89, 0.25);
+        }
+
+        .boton-nav.activo {
+            background-color: #d4af37; /* Oro Alta Costura para la pestaña activa */
+            color: #050505;
+            border-color: #d4af37;
+            font-weight: bold;
+        }
+
+        /* Cuerpo principal */
+        main {
+            display: flex;
+            gap: 20px;
+            margin: 25px 40px;
+            flex: 1;
+        }
+
+        /* Barra Lateral: Publicidad y Patrocinadores */
+        aside {
+            width: 25%;
+            background-color: #0a0a0a;
+            border: 1px solid #1f1f1f;
+            padding: 25px;
+            border-radius: 2px;
+        }
+
+        aside h3 {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 8px;
+        }
+
+        .bloque-publicidad {
+            background-color: #141414;
+            border: 1px solid #282828;
+            padding: 15px;
+            margin-bottom: 18px;
+            border-radius: 2px;
+            transition: border-color 0.3s ease;
+        }
+
+        .bloque-publicidad:hover {
+            border-color: #c5a059;
+        }
+
+        .etiqueta-ad {
+            display: inline-block;
+            font-size: 10px;
+            color: #c5a059;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            border: 1px solid #c5a059;
+            padding: 2px 6px;
+            border-radius: 2px;
+        }
+
+        .titulo-ad {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .texto-ad {
+            color: #888888;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        /* Sección Principal: Negro Carbón */
+        section {
+            width: 75%;
+            background-color: #111111;
+            border: 1px solid #262626;
+            padding: 25px;
+            border-radius: 2px;
+        }
+
+        .titulo-seccion {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #222222;
+            padding-bottom: 10px;
+        }
+
+        /* Cuadrícula de productos */
+        .catalogo-tenis {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .tarjeta-tenis {
+            background-color: #161616;
+            border: 1px solid #282828;
+            border-radius: 2px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .tarjeta-tenis:hover {
+            border-color: #c5a059;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Imagen completa sin recortes */
+        .tarjeta-tenis img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;       /* Muestra el tenis entero sin zoom */
+            object-position: center;
+            background-color: #ffffff; /* Fondo blanco que se acopla a la imagen */
+            padding: 10px;              /* Margen para no tocar el borde */
+            border: 1px solid #222222;
+            border-radius: 2px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .nombre-tenis {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .categoria-tenis {
+            color: #888888;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .precio-tenis {
+            color: #c5a059;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #0d0d0d;
+            border-top: 1px solid #222222;
+            padding: 20px 40px;
+            color: #666666;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <h1 class="header-titulo">Alexander McQueen</h1>
+            <nav class="barra-navgacion">
+                <a href="Joshua.html" class="boton-nav">Inicio</a>
+                <a href="joshua2.html" class="boton-nav activo">Stock</a>
+                <a href="Joshua3.html" class="boton-nav">Servicios</a>
+            </nav>
+        </div>
+        <img src="imagen/mcqueen.png" alt="logo de mi sitio web" class="logo-cabecera">
+    </header>
+
+    <main>
+        <aside>
+            <h3>Patrocinadores</h3>
+
+            <!-- Anuncio 1 -->
+            <div class="bloque-publicidad">
+                <span class="etiqueta-ad">Colaboración</span>
+                <h4 class="titulo-ad">McQueen x PUMA</h4>
+                <p class="texto-ad">Edición limitada de sneakers deportivas de alta costura.</p>
+            </div>
+
+            <!-- Anuncio 2 -->
+            <div class="bloque-publicidad">
+                <span class="etiqueta-ad">Patrocinado</span>
+                <h4 class="titulo-ad">Globe-Trotter</h4>
+                <p class="texto-ad">Equipaje de lujo elaborado a mano con acabados en cuero.</p>
+            </div>
+
+            <!-- Anuncio 3 -->
+            <div class="bloque-publicidad">
+                <span class="etiqueta-ad">Grupo Kering</span>
+                <h4 class="titulo-ad">Gucci & Saint Laurent</h4>
+                <p class="texto-ad">Descubre las últimas colecciones del grupo de moda global.</p>
+            </div>
+        </aside>
+
+        <section>
+            <h2 class="titulo-seccion">Catálogo de Tenis</h2>
+
+            <div class="catalogo-tenis">
+                <!-- Fila 1 - Modelo 1 -->
+                <article class="tarjeta-tenis">
+                    <img src="imagen/tenis 1.jpg" alt="Tenis Oversized Cuero Blanco y Negro">
+                    <h3 class="nombre-tenis">Oversized Sneaker</h3>
+                    <p class="categoria-tenis">Cuero Blanco / Negro</p>
+                    <p class="precio-tenis">$590 USD</p>
+                </article>
+
+                <!-- Fila 1 - Modelo 2 -->
+                <article class="tarjeta-tenis">
+                    <img src="imagen/tenis2.jpg" alt="Tenis Tread Slick">
+                    <h3 class="nombre-tenis">Tread Slick High</h3>
+                    <p class="categoria-tenis">Lona Negra / Suela Goma</p>
+                    <p class="precio-tenis">$750 USD</p>
+                </article>
+
+                <!-- Fila 1 - Modelo 3 -->
+                <article class="tarjeta-tenis">
+                    <img src="imagen/tenis3.jpg" alt="Tenis Sprint Runner">
+                    <h3 class="nombre-tenis">Sprint Runner</h3>
+                    <p class="categoria-tenis">Cuero Plateado / Blanco</p>
+                    <p class="precio-tenis">$690 USD</p>
+                </article>
+
+                <!-- Fila 2 - Modelo 4 -->
+                <article class="tarjeta-tenis">
+                    <img src="imagen/tenis4.jpg" alt="Tenis Court Trainer">
+                    <h3 class="nombre-tenis">Court Trainer</h3>
+                    <p class="categoria-tenis">Cuero Blanco / Talón Gamuza</p>
+                    <p class="precio-tenis">$540 USD</p>
+                </article>
+
+                <!-- Fila 2 - Modelo 5 -->
+                <article class="tarjeta-tenis">
+                    <img src="imagen/tenis5.jpg" alt="Tenis Deck Plimsoll">
+                    <h3 class="nombre-tenis">Deck Plimsoll</h3>
+                    <p class="categoria-tenis">Lona Blanca / Suela Soplada</p>
+                    <p class="precio-tenis">$490 USD</p>
+                </article>
+
+                <!-- Fila 2 - Modelo 6 -->
+                <article class="tarjeta-tenis">
+                    <img src="imagen/tenis6.jpg" alt="Tenis Oversized Transparent">
+                    <h3 class="nombre-tenis">Oversized Transparent</h3>
+                    <p class="categoria-tenis">Cuero Negro / Suela Transparente</p>
+                    <p class="precio-tenis">$620 USD</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Pie de página</p>
+    </footer>
+
+</body>
+</html>
